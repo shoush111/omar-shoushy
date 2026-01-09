@@ -4,38 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation - Omar & Shoushy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital@0;1&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <style>
         :root {
-            --pale-green: #e8f5e9;
-            --leaf-green: #81c784;
+            --cream: #f4f1ea;
+            --sage-green: #7d8c70;
+            --deep-green: #4a5d3f;
+            --gold: #9e8c4a;
             --soft-orange: #ffb74d;
-            --soft-yellow: #fff176;
-            --text-color: #2e7d32;
         }
         body {
             margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: var(--pale-green);
-            font-family: 'Montserrat', sans-serif;
+            background-color: #d1d8cc;
+            font-family: 'Playfair Display', serif;
             overflow-x: hidden;
         }
-        /* --- ENVELOPE STYLES --- */
-        .envelope-wrapper {
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.5s ease;
-        }
+        /* --- ENVELOPE --- */
+        .envelope-wrapper { position: relative; cursor: pointer; perspective: 1000px; }
         .envelope {
             position: relative;
-            width: 350px;
-            height: 250px;
-            background: #fdf5e6;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 380px;
+            height: 280px;
+            background: #e5e0d3;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             z-index: 1;
         }
         .envelope::before {
@@ -43,126 +38,114 @@
             position: absolute;
             top: 0;
             z-index: 2;
-            border-top: 130px solid #e6dbca;
-            border-left: 175px solid transparent;
-            border-right: 175px solid transparent;
+            border-top: 150px solid #d8d0be;
+            border-left: 190px solid transparent;
+            border-right: 190px solid transparent;
             transform-origin: top;
-            transition: all 0.6s ease-in-out;
+            transition: all 0.7s ease-in-out;
         }
-        .envelope.open::before {
-            transform: rotateX(180deg);
-            z-index: 0;
-        }
+        .envelope.open::before { transform: rotateX(180deg); z-index: 0; }
         .wax-seal {
             position: absolute;
-            top: 110px;
-            left: 155px;
-            width: 40px;
-            height: 40px;
-            background: var(--soft-orange);
+            top: 130px;
+            left: 170px;
+            width: 45px;
+            height: 45px;
+            background: #a64d4d;
             border-radius: 50%;
             z-index: 3;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Dancing Script', cursive;
             color: white;
-            transition: 0.5s;
+            font-family: 'Dancing Script', cursive;
+            font-size: 0.8rem;
         }
-        .envelope.open .wax-seal {
-            opacity: 0;
-            pointer-events: none;
-        }
-        /* --- INVITATION CARD --- */
+        .envelope.open .wax-seal { opacity: 0; pointer-events: none; }
+        /* --- THE ART NOUVEAU CARD --- */
         .card {
             position: absolute;
-            top: 0;
+            top: 5px;
             left: 10px;
-            width: 330px;
-            background: white;
-            padding: 20px;
+            width: 360px;
+            background: var(--cream);
+            padding: 40px 20px;
             box-sizing: border-box;
             text-align: center;
-            transition: all 0.8s ease-in-out;
-            z-index: 1;
+            transition: all 0.9s ease-in-out;
             opacity: 0;
-            border: 2px solid var(--leaf-green);
-            background-image: radial-gradient(circle at top left, var(--soft-yellow) 0%, transparent 100px),
-                              radial-gradient(circle at top right, var(--soft-yellow) 0%, transparent 100px);
+            border: 1px solid var(--sage-green);
+            border-radius: 180px 180px 0 0;
+            background-image: radial-gradient(circle at top, rgba(255,255,255,0.8), transparent);
         }
         .envelope.open .card {
-            transform: translateY(-300px);
+            transform: translateY(-380px);
             opacity: 1;
             z-index: 5;
-            height: auto;
             position: relative;
-            margin-top: 400px; /* Moves card into view after envelope pops */
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            margin-top: 550px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
-        /* --- GARDEN DESIGN ELEMENTS --- */
-        .vines {
-            width: 100px;
-            height: auto;
-            margin: 10px auto;
-        }
+        h2 { font-weight: normal; font-size: 1rem; color: #555; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
         h1 {
             font-family: 'Dancing Script', cursive;
-            color: var(--text-color);
-            font-size: 2.5rem;
-            margin: 10px 0;
+            color: var(--deep-green);
+            font-size: 3rem;
+            margin: 5px 0;
         }
-        .details {
-            border-top: 1px solid var(--soft-orange);
-            border-bottom: 1px solid var(--soft-orange);
-            padding: 15px 0;
-            margin: 15px 0;
-            color: #444;
+        .ampersand { font-style: italic; font-size: 1.5rem; color: var(--gold); margin: -10px 0; }
+        .info-text { font-size: 0.95rem; color: #333; line-height: 1.5; margin: 20px 0; }
+        /* --- GOOGLE MAPS BUTTON --- */
+        .maps-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            border: 1px solid var(--gold);
+            color: var(--deep-green);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 20px;
+            transition: 0.3s;
         }
-        .address {
-            font-style: italic;
-            font-size: 0.9rem;
-            color: #666;
-        }
+        .maps-btn:hover { background: var(--gold); color: white; }
+        .note { font-size: 0.75rem; color: var(--sage-green); font-style: italic; margin: 20px 0; line-height: 1.4; }
         /* --- COUNTDOWN --- */
         #countdown {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin-top: 20px;
+            font-family: 'Montserrat', sans-serif;
         }
-        .time-box {
-            background: var(--pale-green);
-            padding: 8px;
-            border-radius: 5px;
-            min-width: 45px;
-        }
-        .time-box span {
-            display: block;
-            font-weight: bold;
-            color: var(--text-color);
-        }
-        .time-label {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-        }
+        .time-box { background: rgba(125, 140, 112, 0.1); padding: 8px; border-radius: 4px; min-width: 50px; }
+        .time-box span { display: block; font-size: 1.1rem; color: var(--deep-green); font-weight: bold; }
+        .time-label { font-size: 0.5rem; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); }
+        .footer-date { margin-top: 30px; font-size: 0.8rem; letter-spacing: 2px; color: var(--deep-green); font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="envelope-wrapper" id="wrapper" onclick="openEnvelope()">
-        <div class="envelope" id="envelope">
+    <div class="envelope-wrapper" onclick="document.getElementById('env').classList.add('open')">
+        <div class="envelope" id="env">
             <div class="wax-seal">O&S</div>
             <div class="card">
-                <div style="font-size: 24px;">:cherry_blossom: :herb: :cherry_blossom:</div>
-                <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">The Wedding of</p>
-                <h1>Omar & Shoushy</h1>
-                <div class="details">
-                    <strong>JUNE 14, 2026</strong><br>
-                    SUNDAY AT 4:00 PM
+                <h2>Please join us for the wedding of</h2>
+                <h1>Omar</h1>
+                <div class="ampersand">&</div>
+                <h1>Shoushy</h1>
+                <div class="info-text">
+                    <strong>JUNE 14th, 2026 | 4 PM</strong><br>
+                    At El Garden<br>
+                    <span style="font-size: 0.8rem;">8 Tsitsernakaberd Hwy, Yerevan</span><br>
+                    <a href="https://maps.app.goo.gl/yYvS6A9V6G3X4Y5w7" target="_blank" class="maps-btn">:round_pushpin: View on Maps</a>
                 </div>
-                <div class="location">
-                    <p><strong>Restaurant El Garden</strong><br>
-                    <span class="address">8 Tsitsernakaberd Hwy, Yerevan</span></p>
+                <div class="note">
+                    Garden-friendly shoes encouraged!<br>
+                    While we love your little ones dearly,<br>
+                    this will be a grown-up celebration.
                 </div>
                 <div id="countdown">
                     <div class="time-box"><span id="days">00</span><div class="time-label">Days</div></div>
@@ -170,33 +153,20 @@
                     <div class="time-box"><span id="mins">00</span><div class="time-label">Min</div></div>
                     <div class="time-box"><span id="secs">00</span><div class="time-label">Sec</div></div>
                 </div>
-                <div style="margin-top: 20px; font-size: 24px; transform: scaleX(-1);">:herb: :cherry_blossom: :herb:</div>
+                <p class="footer-date">RSVP BY MARCH 1ST 2026</p>
+                <div style="margin-top: 15px; font-size: 1.2rem;">:cherry_blossom: :herb: :cherry_blossom:</div>
             </div>
         </div>
     </div>
     <script>
-        function openEnvelope() {
-            document.getElementById('envelope').classList.add('open');
-            // Prevent further clicks from toggling
-            document.getElementById('wrapper').onclick = null;
-        }
-        // Countdown Timer Logic
         const weddingDate = new Date("June 14, 2026 16:00:00").getTime();
-        const timer = setInterval(function() {
+        setInterval(function() {
             const now = new Date().getTime();
-            const distance = weddingDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("mins").innerText = minutes;
-            document.getElementById("secs").innerText = seconds;
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "TODAY IS THE DAY!";
-            }
+            const diff = weddingDate - now;
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000);
         }, 1000);
     </script>
 </body>

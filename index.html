@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation - Omar & Shoushy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital@0;1&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pale-green: #e8f5e9;
+            --leaf-green: #81c784;
+            --soft-orange: #ffb74d;
+            --soft-yellow: #fff176;
+            --text-color: #2e7d32;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--pale-green);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        /* --- ENVELOPE STYLES --- */
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+        .envelope {
+            position: relative;
+            width: 350px;
+            height: 250px;
+            background: #fdf5e6;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            border-top: 130px solid #e6dbca;
+            border-left: 175px solid transparent;
+            border-right: 175px solid transparent;
+            transform-origin: top;
+            transition: all 0.6s ease-in-out;
+        }
+        .envelope.open::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+        .wax-seal {
+            position: absolute;
+            top: 110px;
+            left: 155px;
+            width: 40px;
+            height: 40px;
+            background: var(--soft-orange);
+            border-radius: 50%;
+            z-index: 3;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Dancing Script', cursive;
+            color: white;
+            transition: 0.5s;
+        }
+        .envelope.open .wax-seal {
+            opacity: 0;
+            pointer-events: none;
+        }
+        /* --- INVITATION CARD --- */
+        .card {
+            position: absolute;
+            top: 0;
+            left: 10px;
+            width: 330px;
+            background: white;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            transition: all 0.8s ease-in-out;
+            z-index: 1;
+            opacity: 0;
+            border: 2px solid var(--leaf-green);
+            background-image: radial-gradient(circle at top left, var(--soft-yellow) 0%, transparent 100px),
+                              radial-gradient(circle at top right, var(--soft-yellow) 0%, transparent 100px);
+        }
+        .envelope.open .card {
+            transform: translateY(-300px);
+            opacity: 1;
+            z-index: 5;
+            height: auto;
+            position: relative;
+            margin-top: 400px; /* Moves card into view after envelope pops */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        /* --- GARDEN DESIGN ELEMENTS --- */
+        .vines {
+            width: 100px;
+            height: auto;
+            margin: 10px auto;
+        }
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--text-color);
+            font-size: 2.5rem;
+            margin: 10px 0;
+        }
+        .details {
+            border-top: 1px solid var(--soft-orange);
+            border-bottom: 1px solid var(--soft-orange);
+            padding: 15px 0;
+            margin: 15px 0;
+            color: #444;
+        }
+        .address {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        /* --- COUNTDOWN --- */
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .time-box {
+            background: var(--pale-green);
+            padding: 8px;
+            border-radius: 5px;
+            min-width: 45px;
+        }
+        .time-box span {
+            display: block;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        .time-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope-wrapper" id="wrapper" onclick="openEnvelope()">
+        <div class="envelope" id="envelope">
+            <div class="wax-seal">O&S</div>
+            <div class="card">
+                <div style="font-size: 24px;">:cherry_blossom: :herb: :cherry_blossom:</div>
+                <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">The Wedding of</p>
+                <h1>Omar & Shoushy</h1>
+                <div class="details">
+                    <strong>JUNE 14, 2026</strong><br>
+                    SUNDAY AT 4:00 PM
+                </div>
+                <div class="location">
+                    <p><strong>Restaurant El Garden</strong><br>
+                    <span class="address">8 Tsitsernakaberd Hwy, Yerevan</span></p>
+                </div>
+                <div id="countdown">
+                    <div class="time-box"><span id="days">00</span><div class="time-label">Days</div></div>
+                    <div class="time-box"><span id="hours">00</span><div class="time-label">Hrs</div></div>
+                    <div class="time-box"><span id="mins">00</span><div class="time-label">Min</div></div>
+                    <div class="time-box"><span id="secs">00</span><div class="time-label">Sec</div></div>
+                </div>
+                <div style="margin-top: 20px; font-size: 24px; transform: scaleX(-1);">:herb: :cherry_blossom: :herb:</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openEnvelope() {
+            document.getElementById('envelope').classList.add('open');
+            // Prevent further clicks from toggling
+            document.getElementById('wrapper').onclick = null;
+        }
+        // Countdown Timer Logic
+        const weddingDate = new Date("June 14, 2026 16:00:00").getTime();
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("mins").innerText = minutes;
+            document.getElementById("secs").innerText = seconds;
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "TODAY IS THE DAY!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
